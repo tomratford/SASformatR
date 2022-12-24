@@ -1,0 +1,64 @@
+---
+title: "Getting Started"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting Started}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(SASformatR)
+```
+
+`SASformatR` is a port of the [SAS]() style of [formats](). 
+Formats are defined in a similar way to SAS.
+
+```{r}
+proc_format(
+  PARAMCD = value(
+    "SYSBP" = "Systolic Blood Pressure",
+    "DIABP" = "Diastolic Blood Pressure",
+    "HR" = "Heart Rate"
+  ),
+  PARAMN = invalue(
+    "SYSBP" = 1,
+    "DIABP" = 2,
+    "HP" = 3
+  ),
+  YNn = value(
+    `1` = 'Y',
+    `2` = 'N'
+  )
+)
+```
+
+Unlike in SAS - there is no requirement to specify a format as a 'character' format.
+Like in SAS, ranges are available to simplify numeric formats.
+
+```{r}
+proc_format(
+  AGEGR1 = value(
+    "< 21" = "<21",
+    "21 - 39" = "21 - 39",
+    "40 <=" = ">=40"
+  )
+)
+```
+
+the `x1 - x2` format represents a closed interval of $[x1,x2]$.
+
+To add a format a value - apply the `SASformat()` function to a value with the format of choice
+```{r}
+age <- c(10,20,30,40,50)
+agegr1 <- SASformat(age, "AGEGR1")
+```
+
+To convert using a format - apply the `put` or `input` function to a value - as you would in SAS.
