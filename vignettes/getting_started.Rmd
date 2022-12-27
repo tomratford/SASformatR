@@ -41,6 +41,7 @@ proc_format(
 ```
 
 Unlike in SAS - there is no requirement to specify a format as a 'character' format.
+Therefore, value and invalue have no difference, and are considered the same thing
 Like in SAS, ranges are available to simplify numeric formats.
 
 ```{r}
@@ -61,4 +62,14 @@ age <- c(10,20,30,40,50)
 agegr1 <- SASformat(age, "AGEGR1")
 ```
 
-To convert using a format - apply the `put` or `input` function to a value - as you would in SAS.
+To convert using a format - apply the `put()` or `input()` function to a value - as you would in SAS.
+
+```{r}
+agegr1_c1 <- put(age, "AGEGR1")
+```
+
+Also like SAS, you can use `vvalue()` function to access the formatted value of an `SASformat` object
+
+```{r}
+agegr1_c2 <- vvalue(agegr1)
+```
