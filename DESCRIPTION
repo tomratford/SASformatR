@@ -1,17 +1,20 @@
 Package: SASformatR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Utilise familar SAS formats within you R code
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author@R: person("Tom", "Ratford", role = c("aut", "cre", "cph"))
+Description: This is a loose port of SAS formats, providing familar 
+    functionality to what is available in SAS - whilst being slightly more
+    R-like.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+RoxygenNote: 7.2.0
