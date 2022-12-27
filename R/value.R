@@ -1,11 +1,21 @@
 #' Create a format akin to a SAS format
 #'
-#' @param ...
+#' @param ... See `vignette("getting_started", package = "SASformatR")`
 #'
 #' @return A function
 #' @export
 #'
+#' @importFrom dplyr case_when recode
+#' @importFrom rlang list2
+#'
 #' @examples
+#'proc_format(
+#' AGEGR1 = value(
+#'   "< 21" = "<21",
+#'   "21 - 39" = "21 - 39",
+#'   "40 <=" = ">=40"
+#' )
+#')
 value <- function(...) {
   values <- rlang::list2(...)
 
