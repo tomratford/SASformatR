@@ -6,6 +6,8 @@
 #' @return A character vector of a formatted SASformat object
 #' @export
 #'
+#' @method format SASformat
+#'
 #' @examples
 #' proc_format(
 #'   AGEGR1 = value(

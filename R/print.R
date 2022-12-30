@@ -5,6 +5,8 @@
 #'
 #' @export
 #'
+#' @method print SASformat
+#'
 #' @examples
 #' proc_format(
 #'   AGEGR1 = value(
