@@ -3,8 +3,7 @@
 #' @param ... See `vignette("getting_started", package = "SASformatR")`
 #' @param catalog (`character`) Name of object to store format catalog in
 #'
-#' @return nothing, creates an object `formats` as a side effect
-#' @export
+#' @return nothing, creates a list `catalog` within the `SASformatR::ctls` environment object as a side effect.
 #'
 #' @importFrom rlang list2
 #'
@@ -16,10 +15,15 @@
 #'   "40 <=" = ">=40"
 #' )
 #')
-proc_format <- function(..., catalog = "formats") {
-  if (exists(catalog, envir = .GlobalEnv)) {
-    partial <- get(catalog, envir = .GlobalEnv)
-  } else {
+proc_format <- function(..., catalog = "formats", delete = FALSE) {
+  if (delete) {
+    rm(list = catalog,
+       envir = SASformatR::ctls)
+    return(invisible(NULL))
+  }
+
+  partial <- SASformatR::ctls[[catalog]]
+  if (is.null(SASformatR::ctls[[catalog]])) {
     partial <- list()
   }
 
@@ -27,5 +31,6 @@ proc_format <- function(..., catalog = "formats") {
 
   assign(catalog,
          newlist[!duplicated(names(newlist))],
-         envir = .GlobalEnv)
+         envir = SASformatR::ctls)
 }
+

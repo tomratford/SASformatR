@@ -2,9 +2,18 @@
 test_that("a catalog is created with nothing in", {
   proc_format()
 
-  want <- list()
+  want <- new.env(parent = emptyenv())
+  want$formats <- list()
 
-  expect_equal(formats, want)
+  expect_identical(SASformatR::ctls, want)
+})
+
+test_that("a catalog can be deleted", {
+  proc_format(catalog="formats", delete=TRUE)
+
+  want <- new.env(parent = emptyenv())
+
+  expect_identical(SASformatR::ctls, want)
 })
 
 test_that("a format is created in a catalog and can be indexed", {
@@ -22,7 +31,7 @@ test_that("a format is created in a catalog and can be indexed", {
     "HR" = "Heart Rate"
   )
 
-  expect_equal(formats$PARAMCD, want)
+  expect_equal(SASformatR::ctls$formats$PARAMCD, want)
 })
 
 test_that("the same catalog can be added to multiple times", {
@@ -55,13 +64,16 @@ test_that("the same catalog can be added to multiple times", {
     )
   )
 
-  expect_identical(formats, want)
+  expect_identical(SASformatR::ctls$formats, want)
+  proc_format(catalog="formats", delete=TRUE)
 })
 
 test_that("catalogs can be named", {
   proc_format(catalog = "myFormats")
 
-  want <- list()
+  want <- new.env(parent = emptyenv())
+  want$myFormats <- list()
 
-  expect_equal(myFormats, want)
+  expect_equal(SASformatR::ctls, want)
+  proc_format(catalog = "myFormats", delete = T)
 })

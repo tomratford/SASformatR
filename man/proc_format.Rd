@@ -4,7 +4,7 @@
 \alias{proc_format}
 \title{Create a format catalog}
 \usage{
-proc_format(..., catalog = "formats")
+proc_format(..., catalog = "formats", delete = FALSE)
 }
 \arguments{
 \item{...}{See `vignette("getting_started", package = "SASformatR")`}
@@ -12,7 +12,7 @@ proc_format(..., catalog = "formats")
 \item{catalog}{(`character`) Name of object to store format catalog in}
 }
 \value{
-nothing, creates an object `formats` as a side effect
+nothing, creates a list `catalog` within the `SASformatR::ctls` environment object as a side effect.
 }
 \description{
 Create a format catalog
