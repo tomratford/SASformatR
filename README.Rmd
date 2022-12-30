@@ -1,0 +1,76 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# SASformatR
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of SASformatR is to port the functionality of SAS formats to R, to ease in the creation of data sets.
+
+## Installation
+
+You can install the development version of SASformatR from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("tomratford/SASformatR")
+```
+
+## Example
+
+Like as in SAS, we can create formats uses `proc_format()`.
+
+```{r example}
+library(SASformatR)
+
+proc_format(
+  PARAMCD = value(
+    "SYSBP" = "Systolic Blood Pressure",
+    "DIABP" = "Diastolic Blood Pressure",
+    "HR" = "Heart Rate"
+  ),
+  YNn = value(
+    `1` = 'Y',
+    `2` = 'N'
+  )
+)
+```
+
+These values can be regular enum -> enum formats, or can be numeric ranges if provided in the format below.
+
+```{r cr8_fmt}
+proc_format(
+  AGEGR1 = value(
+    "< 21" = "<21",
+    "21 - 39" = "21 - 39",
+    "40 <=" = ">=40"
+  )
+)
+```
+
+These values can then be applied to a regular vector using the `SASformat` function.
+
+```{r apply_fmt}
+age <- c(10,20,30,40,50)
+agegr1 <- SASformat(age, "AGEGR1")
+```
+
+When viewed in a data frame these values will appear formatted.
+```{r dataframe}
+dplyr::bind_cols(age = age, agegr1 = agegr1)
+```
+
+for more information, check out `vignette("getting_started", package="SASformatR")`.
