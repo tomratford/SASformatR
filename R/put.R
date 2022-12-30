@@ -18,8 +18,7 @@
 #'age <- c(10,20,30,40,50)
 #'agegr1 <- put(age, "AGEGR1")
 put <- function(x, format, catalog = "formats") {
-  catalog <- get("formats", envir = .GlobalEnv)
-  catalog[[format]](x)
+  SASformatR::ctls[[catalog]][[format]](x)
 }
 
 #' @rdname put
