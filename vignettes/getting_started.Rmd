@@ -73,3 +73,9 @@ Unlike SAS, instead of the`vvalue()` function to access the formatted value of a
 ```{r}
 agegr1_c2 <- format(agegr1)
 ```
+
+These formatted values will appear formatted within data frames, but will be accessible as regular values for arithmetic, etc...
+
+```{r}
+my_df <- dplyr::bind_cols(age = age, agegr1 = agegr1)
+```
