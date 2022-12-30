@@ -3,6 +3,7 @@
 #' @param ... See `vignette("getting_started", package = "SASformatR")`
 #' @param catalog (`character`) Name of object to store format catalog in
 #'
+#' @export
 #' @return nothing, creates a list `catalog` within the `SASformatR::ctls` environment object as a side effect.
 #'
 #' @importFrom rlang list2
