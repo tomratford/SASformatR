@@ -6,8 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of SASformatR is to port the functionality of SAS formats to R,
-to ease in the creation of data sets.
+The goal of SASformatR is to port some of the functionality of SAS
+formats to R, to ease in the creation of data frames.
 
 ## Installation
 
@@ -21,7 +21,7 @@ devtools::install_github("tomratford/SASformatR")
 
 ## Example
 
-Like as in SAS, we can create formats uses `proc_format()`.
+Like in SAS, we can create formats using `proc_format()`.
 
 ``` r
 library(SASformatR)
@@ -39,7 +39,7 @@ proc_format(
 )
 ```
 
-These values can be regular enum -\> enum formats, or can be numeric
+These values can be regular `enum -> enum` formats, or can be numeric
 ranges if provided in the format below.
 
 ``` r
